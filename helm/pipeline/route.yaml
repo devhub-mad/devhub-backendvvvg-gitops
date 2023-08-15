@@ -1,0 +1,19 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: webhook-devhub-backendvvvg-el
+  namespace: devhub-val
+  labels:
+    app.kubernetes.io/managed-by: EventListener
+    app.kubernetes.io/part-of: Triggers
+    eventlistener: devhub-backendvvvg-el
+spec:
+  to:
+    kind: Service
+    name: el-devhub-backendvvvg-el
+    weight: 100
+  port:
+    targetPort: http-listener
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
